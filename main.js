@@ -34,8 +34,8 @@ function printReceipt(barcodes) {
 
 	//printReceipt(barcodes);
 	//getNoRepectBarcodeArray(barcodes);
-	var cartItems = getItemCountByBarcode(barcodes);
-	var cartItemDetails = getItemInfoByBarcode(cartItems,databaseRecords);
+	var cartItems = getItemCount(barcodes);
+	var cartItemDetails = getItemDetailInfo(cartItems,databaseRecords);
 	var itemReceipts = getItemSubtotalPrice(cartItemDetails);
 	var totalPrice = getAllItemTotalPrice(itemReceipts);
 	var receiptInfo = getReceiptInfo(itemReceipts,totalPrice);
@@ -55,7 +55,7 @@ function getNoRepectBarcodeArray(array){
     return re;
 }
 
-function getItemCountByBarcode(barcodes){
+function getItemCount(barcodes){
 	var cartItems = [];
 	var noRepectBarcodeArray = getNoRepectBarcodeArray(barcodes);
 	for (var i = 0; i < noRepectBarcodeArray.length; i++) {
@@ -72,7 +72,7 @@ function getItemCountByBarcode(barcodes){
 	//console.log(cartItems);
 }
 
-function getItemInfoByBarcode(cartItems,databaseRecords){
+function getItemDetailInfo(cartItems,databaseRecords){
 	for (var i = 0; i < cartItems.length; i++) {
 		for (var j = databaseRecords.length - 1; j >= 0; j--) {
 			if(databaseRecords[j].barcode == cartItems[i].barcode){
